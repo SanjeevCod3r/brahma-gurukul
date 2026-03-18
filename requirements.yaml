@@ -1,0 +1,18 @@
+packages:
+  "framer-motion": "For smooth scroll reveals, stagger animations, and hover effects across the premium site"
+  "react-hook-form": "For form state management"
+  "@hookform/resolvers": "For zod validation with react-hook-form"
+  "zod": "For schema validation on forms"
+
+images:
+  - path: "artifacts/brahma-gurukul/public/images/mandala-bg.png"
+    description: "Subtle abstract ancient Indian vedic mandala pattern in light gold on transparent background, minimal, clean, elegant"
+    aspect_ratio: "16:9"
+  - path: "artifacts/brahma-gurukul/public/images/gurukul-meditation.png"
+    description: "Minimalist silhouette of a student meditating under a banyan tree at sunrise, warm earthy tones, saffron and gold sky, premium vector illustration"
+    aspect_ratio: "16:9"
+
+notes:
+  - Frontend-only application. Forms will use dummy success handling via toast notifications.
+  - Using wouter for routing.
+  - Relying on Framer Motion for scroll reveals to give a premium feel.
