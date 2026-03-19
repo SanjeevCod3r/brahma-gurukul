@@ -14,6 +14,7 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Cbse from "@/pages/Cbse";
 import Gurukul from "@/pages/Gurukul";
+import Coaching from "@/pages/Coaching";
 import Admissions from "@/pages/Admissions";
 import Gallery from "@/pages/Gallery";
 import Contact from "@/pages/Contact";
@@ -28,6 +29,7 @@ function Router() {
         <Route path="/about" component={About} />
         <Route path="/cbse" component={Cbse} />
         <Route path="/gurukul" component={Gurukul} />
+        <Route path="/coaching" component={Coaching} />
         <Route path="/admissions" component={Admissions} />
         <Route path="/gallery" component={Gallery} />
         <Route path="/contact" component={Contact} />
@@ -46,7 +48,7 @@ function App() {
 
   return (
     <>
-      {showLoader && <OmLoader onComplete={handleLoaderComplete} duration={3600000} />}
+      {showLoader && <OmLoader onComplete={handleLoaderComplete} duration={1500} />}
       {!showLoader && (
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>

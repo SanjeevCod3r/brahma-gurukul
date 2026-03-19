@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import VedicDrawer from "@/components/ui/vedic-drawer";
 
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
   { name: "CBSE", path: "/cbse" },
   { name: "Gurukul", path: "/gurukul" },
+  { name: "Coaching", path: "/coaching" },
   { name: "Admissions", path: "/admissions" },
   { name: "Gallery", path: "/gallery" },
   { name: "Contact", path: "/contact" },
@@ -146,41 +148,8 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Navigation Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-background pt-24 px-4 pb-6 overflow-y-auto md:hidden"
-          >
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => {
-                const isActive = location === link.path;
-                return (
-                  <Link
-                    key={link.path}
-                    href={link.path}
-                    className={`text-xl font-serif py-3 border-b border-border/50 ${
-                      isActive ? "text-primary font-semibold" : "text-foreground/80"
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                );
-              })}
-              <Link
-                href="/admissions"
-                className="mt-6 w-full text-center py-4 bg-primary text-white rounded-xl font-semibold text-lg shadow-lg shadow-primary/25"
-              >
-                Apply for Admission
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Vedic Drawer for Mobile */}
+      <VedicDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
     </>
   );
 }
