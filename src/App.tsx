@@ -46,7 +46,7 @@ function App() {
 
   return (
     <>
-      {showLoader && <OmLoader onComplete={handleLoaderComplete} duration={1500} />}
+      {showLoader && <OmLoader onComplete={handleLoaderComplete} duration={3600000} />}
       {!showLoader && (
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
