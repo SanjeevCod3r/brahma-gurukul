@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Award, BookOpen, Brain, Clock, Target, Users, Zap, Star, CheckCircle, TrendingUp } from "lucide-react";
+import { ArrowRight, Award, BookOpen, Brain, Clock, Target, Users, Zap, Star, CheckCircle, TrendingUp, Download, Smartphone } from "lucide-react";
 
 export default function Coaching() {
   return (
@@ -279,6 +279,162 @@ export default function Coaching() {
                 <p className="text-lg font-semibold text-amber-900">{stat.label}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile App Section */}
+      <section className="py-20 bg-gradient-to-r from-orange-100 to-amber-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-serif font-bold text-amber-900 mb-4">Learn Anytime, Anywhere</h2>
+            <p className="text-lg text-amber-700 max-w-2xl mx-auto">
+              Download our mobile app and access study materials, tests, and live classes on the go
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-white rounded-2xl shadow-xl p-8">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center">
+                    <Smartphone className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-serif font-bold text-amber-900">Brahma Gurukul App</h3>
+                    <p className="text-amber-700">Your pocket learning companion</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4 mb-8">
+                  {[
+                    "📚 Access study materials 24/7",
+                    "📝 Practice tests and quizzes",
+                    "🎥 Live class recordings",
+                    "💬 Doubt clearing chat",
+                    "📊 Performance analytics",
+                    "🔔 Exam reminders and updates"
+                  ].map((feature, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0" />
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="space-y-4">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-black text-white rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-lg"
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                    </svg>
+                    <div className="text-left">
+                      <p className="text-xs opacity-80">Download on the</p>
+                      <p className="text-sm font-semibold">App Store</p>
+                    </div>
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-black text-white rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-lg"
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    </svg>
+                    <div className="text-left">
+                      <p className="text-xs opacity-80">Get it on</p>
+                      <p className="text-sm font-semibold">Google Play</p>
+                    </div>
+                  </motion.button>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="relative">
+                {/* Phone mockup */}
+                <div className="mx-auto w-64 h-[500px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-3 shadow-2xl">
+                  <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+                    {/* Phone screen */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-amber-50">
+                      {/* Status bar */}
+                      <div className="bg-gradient-to-r from-orange-600 to-amber-600 px-6 py-2 flex justify-between items-center">
+                        <span className="text-white text-xs font-medium">9:41</span>
+                        <div className="flex gap-1">
+                          <div className="w-4 h-3 bg-white rounded-sm"></div>
+                          <div className="w-4 h-3 bg-white rounded-sm"></div>
+                          <div className="w-4 h-3 bg-white rounded-sm"></div>
+                        </div>
+                      </div>
+                      
+                      {/* App content */}
+                      <div className="p-4 space-y-4">
+                        <div className="text-center">
+                          <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl mx-auto mb-2"></div>
+                          <h4 className="font-bold text-amber-900">Brahma Gurukul</h4>
+                        </div>
+                        
+                        <div className="space-y-3">
+                          <div className="bg-white rounded-lg p-3 shadow-sm">
+                            <div className="w-full h-2 bg-orange-200 rounded mb-2"></div>
+                            <div className="w-3/4 h-2 bg-orange-200 rounded"></div>
+                          </div>
+                          <div className="bg-white rounded-lg p-3 shadow-sm">
+                            <div className="w-full h-2 bg-amber-200 rounded mb-2"></div>
+                            <div className="w-2/3 h-2 bg-amber-200 rounded"></div>
+                          </div>
+                          <div className="bg-white rounded-lg p-3 shadow-sm">
+                            <div className="w-full h-2 bg-yellow-200 rounded mb-2"></div>
+                            <div className="w-4/5 h-2 bg-yellow-200 rounded"></div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-center gap-4">
+                          <div className="w-12 h-12 bg-orange-500 rounded-full"></div>
+                          <div className="w-12 h-12 bg-amber-500 rounded-full"></div>
+                          <div className="w-12 h-12 bg-yellow-500 rounded-full"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Floating elements */}
+                <motion.div
+                  animate={{ y: [-10, 10, -10] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-orange-400 to-amber-400 rounded-2xl shadow-lg flex items-center justify-center"
+                >
+                  <Download className="w-8 h-8 text-white" />
+                </motion.div>
+                
+                <motion.div
+                  animate={{ y: [10, -10, 10] }}
+                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                  className="absolute -bottom-4 -left-4 w-14 h-14 bg-gradient-to-br from-amber-400 to-yellow-400 rounded-2xl shadow-lg flex items-center justify-center"
+                >
+                  <Star className="w-7 h-7 text-white" />
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
