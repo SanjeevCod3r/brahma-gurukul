@@ -594,31 +594,47 @@ export default function Home() {
             ✦ From The Desk of the Director ✦
           </motion.p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
-            {/* Avatar */}
+            {/* Avatars */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="flex flex-col items-center text-center"
+              className="flex flex-col sm:flex-row md:flex-col gap-8 items-center justify-center"
             >
-              <div className="relative mb-5">
-                <div className="w-36 h-36 rounded-full flex items-center justify-center text-4xl font-serif font-bold border-4"
-                  style={{background:"rgba(255,102,0,0.12)", borderColor:"#D4AF37", color:"#FFD700", boxShadow:"0 0 0 8px rgba(212,175,55,0.08)"}}>
-                  MR
+              {/* Founder */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4">
+                  <div className="w-28 h-28 rounded-full flex items-center justify-center border-4 overflow-hidden"
+                    style={{background:"rgba(255,102,0,0.12)", borderColor:"#D4AF37", boxShadow:"0 0 0 6px rgba(212,175,55,0.08)"}}>
+                    <img src="/images/Founder%20Home%20Page.png" alt="Manvendra Singh Rajput" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full flex items-center justify-center border-2 z-10"
+                    style={{background:"#D4AF37", borderColor:"#1a0800", color:"#1a0800"}}>
+                    <span className="text-sm font-serif font-bold">ॐ</span>
+                  </div>
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-11 h-11 rounded-full flex items-center justify-center border-2"
-                  style={{background:"#D4AF37", borderColor:"#1a0800", color:"#1a0800"}}>
-                  <span className="text-lg font-serif font-bold">ॐ</span>
+                <h3 className="text-lg font-serif font-bold mb-0.5" style={{color:"#FFD700"}}>Manvendra Singh Rajput</h3>
+                <p className="text-xs font-semibold" style={{color:"rgba(255,102,0,0.9)"}}>Director & Founder</p>
+                <p className="text-[10px] mt-1" style={{color:"rgba(255,255,255,0.4)"}}>Brahma Gurukul</p>
+              </div>
+
+              {/* Co-founder */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4">
+                  <div className="w-28 h-28 rounded-full flex items-center justify-center border-4 overflow-hidden"
+                    style={{background:"rgba(255,102,0,0.12)", borderColor:"#D4AF37", boxShadow:"0 0 0 6px rgba(212,175,55,0.08)"}}>
+                    <img src="/images/Ambika%20Rajput%20Co%20Founder.jpeg" alt="Ambika Rajput" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full flex items-center justify-center border-2 z-10"
+                    style={{background:"#D4AF37", borderColor:"#1a0800", color:"#1a0800"}}>
+                    <span className="text-sm font-serif font-bold">ॐ</span>
+                  </div>
                 </div>
+                <h3 className="text-lg font-serif font-bold mb-0.5" style={{color:"#FFD700"}}>Ambika Rajput</h3>
+                <p className="text-xs font-semibold" style={{color:"rgba(255,102,0,0.9)"}}>Co-Founder</p>
+                <p className="text-[10px] mt-1" style={{color:"rgba(255,255,255,0.4)"}}>Brahma Gurukul</p>
               </div>
-              <h3 className="text-xl font-serif font-bold mb-1" style={{color:"#FFD700"}}>Manvendra Singh Rajput</h3>
-              <p className="text-sm font-semibold" style={{color:"rgba(255,102,0,0.9)"}}>Director & Founder</p>
-              <p className="text-xs mt-1" style={{color:"rgba(255,255,255,0.4)"}}>Brahma Gurukul</p>
-              <div className="mt-5 flex gap-1">
-                {[1,2,3,4,5].map(s => <Star key={s} size={14} fill="#D4AF37" style={{color:"#D4AF37"}} />)}
-              </div>
-              <p className="text-xs mt-1" style={{color:"rgba(255,255,255,0.35)"}}>15+ Years in Education</p>
             </motion.div>
 
             {/* Quote */}
