@@ -200,12 +200,12 @@ export default function Academic() {
         </div>
       </section>
 
-      {/* Daily Routine Section - Performance Optimized */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden overflow-x-hidden">
+      {/* Daily Routine Section - Mobile Optimized */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden overflow-x-hidden">
         {/* Simplified Background */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-64 h-64 bg-orange-200 rounded-full blur-3xl opacity-10"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-200 rounded-full blur-3xl opacity-10"></div>
+          <div className="absolute top-0 left-0 w-32 h-32 sm:w-64 sm:h-64 bg-orange-200 rounded-full blur-3xl opacity-5 sm:opacity-10"></div>
+          <div className="absolute bottom-0 right-0 w-48 h-48 sm:w-96 sm:h-96 bg-amber-200 rounded-full blur-3xl opacity-5 sm:opacity-10"></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto">
@@ -214,69 +214,69 @@ export default function Academic() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-100 to-amber-100 rounded-full mb-6">
-              <Clock className="w-5 h-5 text-orange-600" />
-              <span className="text-amber-900 font-semibold">Daily Schedule</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-orange-100 to-amber-100 rounded-full mb-4 sm:mb-6">
+              <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
+              <span className="text-amber-900 font-semibold text-sm sm:text-base">Daily Schedule</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-serif font-bold text-amber-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-amber-900 mb-4 sm:mb-6 px-4">
               A Day at Brahma Gurukul
             </h2>
-            <p className="text-lg sm:text-xl text-amber-700 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-amber-700 max-w-2xl mx-auto leading-relaxed px-4">
               Experience the perfect balance of discipline, learning, and spiritual growth
             </p>
           </motion.div>
 
-          {/* Optimized Timeline */}
-          <div className="max-w-5xl mx-auto px-4">
+          {/* Mobile-Optimized Timeline */}
+          <div className="max-w-5xl mx-auto px-2 sm:px-4">
             <div className="relative">
-              {/* Static Timeline Line */}
-              <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-400 via-amber-400 to-yellow-400 rounded-full"></div>
+              {/* Responsive Timeline Line */}
+              <div className="absolute left-4 sm:left-6 md:left-8 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-orange-400 via-amber-400 to-yellow-400 rounded-full"></div>
               
-              {/* Timeline Items - Optimized */}
-              <div className="space-y-6">
+              {/* Timeline Items - Mobile First */}
+              <div className="space-y-4 sm:space-y-6">
                 {dailyRoutine.map((activity, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: -30 }}
+                    initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: true, margin: "-30px" }}
                     transition={{ 
-                      delay: Math.min(index * 0.1, 0.5), // Cap the delay to prevent long waits
-                      duration: 0.4
+                      delay: Math.min(index * 0.05, 0.3), // Faster delays for mobile
+                      duration: 0.3
                     }}
                     className="relative"
                   >
-                    {/* Simplified Timeline Dot */}
-                    <div className="absolute left-6 sm:left-8 transform -translate-x-1/2 z-20">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-full flex items-center justify-center shadow-lg">
-                        <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                    {/* Responsive Timeline Dot */}
+                    <div className="absolute left-4 sm:left-6 md:left-8 transform -translate-x-1/2 z-20">
+                      <div className="w-8 h-8 sm:w-10 sm:h-12 md:w-16 md:h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-full flex items-center justify-center shadow-lg">
+                        <Clock className="w-3 h-3 sm:w-4 sm:w-6 md:w-6 md:h-6 text-white" />
                       </div>
                     </div>
 
-                    {/* Content Card - Simplified */}
-                    <div className="ml-20 sm:ml-24 bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-orange-100 hover:shadow-xl transition-all duration-300">
-                      {/* Time Badge */}
-                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold rounded-full mb-4">
-                        <span>⏰</span>
-                        {activity.time}
+                    {/* Mobile-Optimized Content Card */}
+                    <div className="ml-12 sm:ml-16 md:ml-24 bg-white rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-md sm:shadow-lg border border-orange-100 hover:shadow-xl transition-all duration-300">
+                      {/* Responsive Time Badge */}
+                      <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1 sm:py-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold rounded-full mb-2 sm:mb-4">
+                        <span className="text-xs sm:text-sm">⏰</span>
+                        <span className="text-xs sm:text-sm md:text-base">{activity.time}</span>
                       </div>
 
-                      {/* Title and Description */}
-                      <div className="space-y-3">
-                        <h3 className="text-xl sm:text-2xl font-bold text-amber-900">
+                      {/* Responsive Title and Description */}
+                      <div className="space-y-1 sm:space-y-3">
+                        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-amber-900 pr-8 sm:pr-10">
                           {activity.title}
                         </h3>
-                        <p className="text-amber-700 leading-relaxed">
+                        <p className="text-xs sm:text-sm md:text-base text-amber-700 leading-relaxed">
                           {activity.desc}
                         </p>
                       </div>
 
-                      {/* Static Activity Icon */}
-                      <div className="absolute top-6 right-6">
-                        <div className="w-10 h-10 bg-gradient-to-br from-orange-100 to-amber-100 rounded-full flex items-center justify-center">
-                          <span className="text-lg">
+                      {/* Responsive Activity Icon */}
+                      <div className="absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-6">
+                        <div className="w-6 h-6 sm:w-8 sm:h-10 md:w-10 md:h-10 bg-gradient-to-br from-orange-100 to-amber-100 rounded-full flex items-center justify-center">
+                          <span className="text-xs sm:text-sm md:text-lg">
                             {index === 0 && '🌅'}
                             {index === 1 && '🧘'}
                             {index === 2 && '🕉️'}
@@ -298,18 +298,18 @@ export default function Academic() {
             </div>
           </div>
 
-          {/* Simplified Bottom CTA */}
+          {/* Mobile-Optimized Bottom CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-16 text-center"
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="mt-12 sm:mt-16 text-center"
           >
-            <div className="inline-flex items-center gap-4 px-6 py-3 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-bold rounded-full shadow-lg">
-              <span>⏰</span>
-              <span>24 Hours of Holistic Learning</span>
-              <span>🌟</span>
+            <div className="inline-flex items-center gap-2 sm:gap-4 px-3 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-bold rounded-full shadow-lg">
+              <span className="text-sm sm:text-base">⏰</span>
+              <span className="text-sm sm:text-base">24 Hours of Holistic Learning</span>
+              <span className="text-sm sm:text-base">🌟</span>
             </div>
           </motion.div>
         </div>
