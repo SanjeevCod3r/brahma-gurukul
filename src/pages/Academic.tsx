@@ -412,7 +412,7 @@ export default function Academic() {
 
       {/* Founder */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
-        <div className="max-w-md mx-auto text-center">
+        <div className="max-w-lg mx-auto text-center px-2">
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-amber-900 mb-10">
             Meet Our Founder
           </h2>
@@ -432,9 +432,11 @@ export default function Academic() {
             <h3 className="mt-8 text-2xl sm:text-3xl font-serif font-bold text-amber-900">
               Harisharan Rajput
             </h3>
-            <p className="mt-3 text-base sm:text-lg text-amber-800">
-              20+ years of experience in teaching
-            </p>
+            <div className="mt-4 space-y-1 text-base sm:text-lg text-amber-800 leading-relaxed">
+              <p>Founder & Director of Shree Kamta Prasad</p>
+              <p className="font-medium text-amber-900">Memorial Shikshad Sansthan</p>
+              <p className="pt-3 text-amber-700">25+ years of experience</p>
+            </div>
           </motion.div>
         </div>
       </section>

@@ -15,7 +15,7 @@ export function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="flex-grow pt-0">{children}</main>
+      <main className="flex-grow min-w-0 overflow-x-hidden pt-0">{children}</main>
       <Footer />
       <WhatsAppButton />
     </div>

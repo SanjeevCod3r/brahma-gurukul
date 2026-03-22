@@ -155,7 +155,7 @@ export default function Coaching() {
     },
   ];
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
+    <div className="min-h-screen w-full min-w-0 overflow-x-hidden bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-900/90 via-amber-900/80 to-yellow-900/70"></div>
@@ -163,35 +163,35 @@ export default function Coaching() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm-10 0c0-5.523-4.477-10-10-10S0 24.477 0 30s4.477 10 10 10 10-4.477 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div className="relative w-full min-w-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="text-center w-full min-w-0"
           >
             <div className="flex justify-center mb-6">
               <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-amber-500 rounded-full flex items-center justify-center shadow-2xl ring-4 ring-white/10">
                 <Target className="w-10 h-10 text-white" />
               </div>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-8 sm:mb-10">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-8 sm:mb-10 px-1 break-words">
               Brahma Gurukul Academy
             </h1>
 
             {/* Course names — visible in hero so visitors see offerings at a glance */}
-            <div className="max-w-4xl mx-auto mb-10 text-left">
-              <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-4 sm:p-6 shadow-xl">
+            <div className="w-full min-w-0 max-w-4xl mx-auto mb-10 text-left">
+              <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-4 sm:p-6 shadow-xl min-w-0">
                 <p className="text-xs font-semibold uppercase tracking-wider text-amber-200/90 mb-3 flex items-center gap-2">
                   <GraduationCap className="w-4 h-4" />
                   Academic
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-6 justify-start">
                   {academicCourses.map((course) => (
                     <Link
                       key={course.id}
                       href={`/course/${course.id}`}
-                      className="inline-flex items-center gap-1.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/25 px-3 py-1.5 text-sm font-medium text-white transition-colors"
+                      className="inline-flex max-w-full items-center gap-1.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/25 px-3 py-1.5 text-sm font-medium text-white transition-colors"
                     >
                       {course.title}
                       <ArrowRight className="w-3.5 h-3.5 opacity-80" />
@@ -202,12 +202,12 @@ export default function Coaching() {
                   <Briefcase className="w-4 h-4" />
                   Competitive exams
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-start">
                   {competitiveCourses.map((course) => (
                     <Link
                       key={course.id}
                       href={`/course/${course.id}`}
-                      className="inline-flex items-center gap-1.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/25 px-3 py-1.5 text-sm font-medium text-white transition-colors"
+                      className="inline-flex max-w-full items-center gap-1.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/25 px-3 py-1.5 text-sm font-medium text-white transition-colors"
                     >
                       {course.title}
                       <ArrowRight className="w-3.5 h-3.5 opacity-80" />
@@ -226,19 +226,19 @@ export default function Coaching() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center w-full max-w-md sm:max-w-none mx-auto">
               <motion.a
                 href="#courses"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 View course cards
               </motion.a>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white font-bold rounded-full border-2 border-white/40 hover:bg-white/30 transition-all duration-300"
+                className="px-6 sm:px-8 py-4 bg-white/20 backdrop-blur-sm text-white font-bold rounded-full border-2 border-white/40 hover:bg-white/30 transition-all duration-300"
               >
                 Download Brochure
               </motion.button>
@@ -248,14 +248,14 @@ export default function Coaching() {
       </section>
 
       {/* Features Grid - Enhanced Design */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-x-hidden overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50"></div>
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M20 20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm-10 0c0-5.523-4.477-10-10-10S0 14.477 0 20s4.477 10 10 10 10-4.477 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
         
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative w-full min-w-0 max-w-7xl mx-auto">
           {/* Enhanced Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -281,7 +281,7 @@ export default function Coaching() {
           </motion.div>
 
           {/* Enhanced Feature Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 w-full min-w-0 px-1 sm:px-0">
             {[
               {
                 icon: <Brain className="w-10 h-10" />,
@@ -416,8 +416,8 @@ export default function Coaching() {
       </section>
 
       {/* Courses Section with Toggle */}
-      <section id="courses" className="py-20 bg-gradient-to-r from-orange-100 to-amber-100 scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="courses" className="py-20 bg-gradient-to-r from-orange-100 to-amber-100 scroll-mt-20 overflow-x-hidden w-full min-w-0">
+        <div className="w-full min-w-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -430,21 +430,21 @@ export default function Coaching() {
             </p>
           </motion.div>
 
-          {/* Toggle Buttons */}
-          <div className="flex justify-center mb-12">
-            <div className="bg-white rounded-full p-1 shadow-lg flex">
+          {/* Toggle Buttons — stack on narrow screens to avoid horizontal overflow */}
+          <div className="flex justify-center mb-12 w-full min-w-0">
+            <div className="bg-white rounded-2xl sm:rounded-full p-1 shadow-lg flex flex-col sm:flex-row w-full max-w-md sm:max-w-none sm:w-auto gap-1 sm:gap-0">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setActiveSection(1)}
-                className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+                className={`w-full sm:w-auto px-6 sm:px-8 py-3 rounded-xl sm:rounded-full font-semibold transition-all duration-300 ${
                   activeSection === 1
                     ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md"
                     : "text-amber-700 hover:text-amber-900"
                 }`}
               >
-                <div className="flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5" />
+                <div className="flex items-center justify-center gap-2">
+                  <GraduationCap className="w-5 h-5 shrink-0" />
                   Academic Classes
                 </div>
               </motion.button>
@@ -452,14 +452,14 @@ export default function Coaching() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setActiveSection(2)}
-                className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+                className={`w-full sm:w-auto px-6 sm:px-8 py-3 rounded-xl sm:rounded-full font-semibold transition-all duration-300 ${
                   activeSection === 2
                     ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md"
                     : "text-amber-700 hover:text-amber-900"
                 }`}
               >
-                <div className="flex items-center gap-2">
-                  <Briefcase className="w-5 h-5" />
+                <div className="flex items-center justify-center gap-2">
+                  <Briefcase className="w-5 h-5 shrink-0" />
                   Competitive Exams
                 </div>
               </motion.button>
@@ -472,7 +472,7 @@ export default function Coaching() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 w-full min-w-0"
           >
             {(activeSection === 1 ? academicCourses : competitiveCourses).map((course, index) => (
               <motion.div
@@ -493,12 +493,12 @@ export default function Coaching() {
                         backgroundImage: `url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M12 12c0-1.657 1.343-3 3-3s3 1.343 3 3-1.343 3-3 3-3-1.343-3-3zm-6 0c0-1.657-1.343-3-3-3S0 10.343 0 12s1.343 3 3 3 3-1.343 3-3z'/%3E%3C/svg%3E")`,
                       }}
                     />
-                    <div className="flex items-center gap-4 relative">
-                      <div className="w-14 h-14 bg-white/15 rounded-xl flex items-center justify-center backdrop-blur-sm ring-1 ring-white/20 text-white">
+                    <div className="flex items-center gap-4 relative min-w-0">
+                      <div className="w-14 h-14 shrink-0 bg-white/15 rounded-xl flex items-center justify-center backdrop-blur-sm ring-1 ring-white/20 text-white">
                         {course.icon}
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-serif font-bold text-white">{course.title}</h3>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-xl font-serif font-bold text-white break-words">{course.title}</h3>
                         <p className="text-white/80 text-sm">{course.description}</p>
                       </div>
                     </div>
@@ -516,16 +516,16 @@ export default function Coaching() {
                     </div>
 
                     {/* Price and CTA */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <div>
+                    <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gray-100 min-w-0">
+                      <div className="min-w-0">
                         <p className="text-2xl font-bold text-amber-900">{course.price}</p>
                         <p className="text-xs text-gray-500">{course.duration}</p>
                       </div>
-                      <Link href={`/course/${course.id}`}>
+                      <Link href={`/course/${course.id}`} className="shrink-0">
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-4 py-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 flex items-center gap-2 text-sm"
+                        className="px-4 py-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 flex items-center gap-2 text-sm whitespace-nowrap"
                       >
                         View Details <ArrowRight className="w-3 h-3" />
                       </motion.button>
@@ -891,8 +891,8 @@ export default function Coaching() {
       </section>
 
       {/* Mobile App Section */}
-      <section className="py-20 bg-gradient-to-r from-orange-100 to-amber-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-gradient-to-r from-orange-100 to-amber-100 overflow-x-hidden w-full min-w-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -974,9 +974,9 @@ export default function Coaching() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative overflow-x-hidden min-w-0 px-2 sm:px-0"
             >
-              <div className="relative">
+              <div className="relative max-w-[min(100%,20rem)] mx-auto">
                 {/* Phone mockup */}
                 <div className="mx-auto w-64 h-[500px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-3 shadow-2xl">
                   <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
