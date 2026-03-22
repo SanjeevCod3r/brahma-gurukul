@@ -15,6 +15,7 @@ import About from "@/pages/About";
 import Cbse from "@/pages/Cbse";
 import Gurukul from "@/pages/Gurukul";
 import Coaching from "@/pages/Coaching";
+import CourseDetails from "@/pages/CourseDetails";
 import Admissions from "@/pages/Admissions";
 import Gallery from "@/pages/Gallery";
 import Contact from "@/pages/Contact";
@@ -30,6 +31,7 @@ function Router() {
         <Route path="/cbse" component={Cbse} />
         <Route path="/gurukul" component={Gurukul} />
         <Route path="/coaching" component={Coaching} />
+        <Route path="/course/:courseId" component={CourseDetails} />
         <Route path="/admissions" component={Admissions} />
         <Route path="/gallery" component={Gallery} />
         <Route path="/contact" component={Contact} />
