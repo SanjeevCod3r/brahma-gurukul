@@ -7,8 +7,7 @@ import VedicDrawer from "@/components/ui/vedic-drawer";
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
-  { name: "CBSE", path: "/cbse" },
-  { name: "Gurukul", path: "/gurukul" },
+  { name: "Academic", path: "/academic" },
   { name: "Coaching", path: "/coaching" },
   { name: "Admissions", path: "/admissions" },
   { name: "Gallery", path: "/gallery" },

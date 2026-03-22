@@ -6,8 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { name: "Home", path: "/", icon: "🏠" },
   { name: "About", path: "/about", icon: "📿" },
-  { name: "CBSE", path: "/cbse", icon: "📚" },
-  { name: "Gurukul", path: "/gurukul", icon: "🕉️" },
+  { name: "Academic", path: "/academic", icon: "�" },
   { name: "Coaching", path: "/coaching", icon: "🎯" },
   { name: "Admissions", path: "/admissions", icon: "🎓" },
   { name: "Gallery", path: "/gallery", icon: "🖼️" },

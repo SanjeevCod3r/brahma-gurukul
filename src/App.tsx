@@ -12,8 +12,7 @@ import NotFound from "@/pages/not-found";
 // Pages
 import Home from "@/pages/Home";
 import About from "@/pages/About";
-import Cbse from "@/pages/Cbse";
-import Gurukul from "@/pages/Gurukul";
+import Academic from "@/pages/Academic";
 import Coaching from "@/pages/Coaching";
 import CourseDetails from "@/pages/CourseDetails";
 import Admissions from "@/pages/Admissions";
@@ -28,8 +27,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
-        <Route path="/cbse" component={Cbse} />
-        <Route path="/gurukul" component={Gurukul} />
+        <Route path="/academic" component={Academic} />
         <Route path="/coaching" component={Coaching} />
         <Route path="/course/:courseId" component={CourseDetails} />
         <Route path="/admissions" component={Admissions} />
