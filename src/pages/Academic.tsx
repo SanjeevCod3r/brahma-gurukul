@@ -434,8 +434,10 @@ export default function Academic() {
             </h3>
             <div className="mt-4 space-y-1 text-base sm:text-lg text-amber-800 leading-relaxed">
               <p>Founder & Director of Shree Kamta Prasad</p>
-              <p className="font-medium text-amber-900">Memorial Shikshad Sansthan</p>
-              <p className="pt-3 text-amber-700">25+ years of experience</p>
+              <p>Memorial Shikshad Sansthan</p>
+              <p className="pt-4 mt-1 inline-block rounded-full bg-gradient-to-r from-orange-100 to-amber-100 px-5 py-2 text-amber-900 font-semibold shadow-sm ring-1 ring-orange-200/60">
+                25+ years of experience
+              </p>
             </div>
           </motion.div>
         </div>

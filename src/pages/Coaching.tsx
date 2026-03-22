@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Award, BookOpen, Brain, Clock, Target, Users, Zap, Star, CheckCircle, TrendingUp, Download, Smartphone, GraduationCap, Trophy, Briefcase, Landmark, User, Quote, ChevronDown } from "lucide-react";
+import { ArrowRight, Award, BookOpen, Brain, Clock, Target, Users, Zap, Star, CheckCircle, TrendingUp, Smartphone, GraduationCap, Trophy, Briefcase, Landmark, User, Quote, ChevronDown, Video, MessageCircle, BarChart3, Bell, FileText } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 
@@ -890,159 +890,134 @@ export default function Coaching() {
         </div>
       </section>
 
-      {/* Mobile App Section */}
-      <section className="py-20 bg-gradient-to-r from-orange-100 to-amber-100 overflow-x-hidden w-full min-w-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
+      {/* Mobile app — split panel layout */}
+      <section className="py-20 md:py-24 overflow-x-hidden w-full min-w-0 bg-gradient-to-b from-orange-50/90 via-amber-50/80 to-orange-100/60">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            transition={{ duration: 0.55 }}
+            className="rounded-[2rem] border border-orange-200/90 bg-white shadow-[0_24px_80px_-20px_rgba(180,83,9,0.25)] overflow-hidden"
           >
-            <h2 className="text-4xl font-serif font-bold text-amber-900 mb-4">Learn Anytime, Anywhere</h2>
-            <p className="text-lg text-amber-700 max-w-2xl mx-auto">
-              Download our mobile app and access study materials, tests, and live classes on the go
-            </p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-white rounded-2xl shadow-xl p-8">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center">
-                    <Smartphone className="w-8 h-8 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-serif font-bold text-amber-900">Brahma Gurukul App</h3>
-                    <p className="text-amber-700">Your pocket learning companion</p>
-                  </div>
+            <div className="grid lg:grid-cols-2 lg:min-h-[520px]">
+              {/* Left: copy + features + stores */}
+              <div className="order-2 lg:order-1 p-8 sm:p-10 lg:p-12 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-orange-100">
+                <div className="inline-flex items-center gap-2 rounded-full bg-orange-100/90 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-orange-800 w-fit mb-5">
+                  <Smartphone className="w-3.5 h-3.5" />
+                  Mobile learning
                 </div>
+                <h2 className="text-3xl sm:text-4xl font-serif font-bold text-amber-950 tracking-tight">
+                  Learn Anytime, Anywhere
+                </h2>
+                <p className="mt-3 text-amber-800/90 text-base sm:text-lg leading-relaxed max-w-md">
+                  Use the Brahma Gurukul app for notes, tests, recordings, and reminders—aligned with your coaching program.
+                </p>
 
-                <div className="space-y-4 mb-8">
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
-                    "📚 Access study materials 24/7",
-                    "📝 Practice tests and quizzes",
-                    "🎥 Live class recordings",
-                    "💬 Doubt clearing chat",
-                    "📊 Performance analytics",
-                    "🔔 Exam reminders and updates"
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                    { icon: BookOpen, label: "Study materials 24/7" },
+                    { icon: FileText, label: "Practice tests & quizzes" },
+                    { icon: Video, label: "Live class recordings" },
+                    { icon: MessageCircle, label: "Doubt clearing chat" },
+                    { icon: BarChart3, label: "Performance analytics" },
+                    { icon: Bell, label: "Exam reminders" },
+                  ].map(({ icon: Icon, label }, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start gap-3 rounded-xl border border-orange-100/90 bg-gradient-to-br from-orange-50/80 to-amber-50/50 px-4 py-3"
+                    >
+                      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-amber-500 text-white shadow-sm">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <span className="text-sm font-medium text-amber-900 leading-snug">{label}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="space-y-4">
+                <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <motion.button
+                    type="button"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-black text-white rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-lg"
+                    className="flex items-center justify-center gap-3 rounded-xl border border-stone-200 bg-stone-900 px-5 py-3.5 text-white shadow-md transition-colors hover:bg-stone-800"
                   >
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                    <svg className="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                       <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
                     </svg>
                     <div className="text-left">
-                      <p className="text-xs opacity-80">Download on the</p>
+                      <p className="text-[11px] uppercase tracking-wide text-white/70">Download on the</p>
                       <p className="text-sm font-semibold">App Store</p>
                     </div>
                   </motion.button>
-
                   <motion.button
+                    type="button"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-black text-white rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-lg"
+                    className="flex items-center justify-center gap-3 rounded-xl border border-stone-200 bg-stone-900 px-5 py-3.5 text-white shadow-md transition-colors hover:bg-stone-800"
                   >
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                    <svg className="h-7 w-7 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                       <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
                     </svg>
                     <div className="text-left">
-                      <p className="text-xs opacity-80">Get it on</p>
+                      <p className="text-[11px] uppercase tracking-wide text-white/70">Get it on</p>
                       <p className="text-sm font-semibold">Google Play</p>
                     </div>
                   </motion.button>
                 </div>
               </div>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative overflow-x-hidden min-w-0 px-2 sm:px-0"
-            >
-              <div className="relative max-w-[min(100%,20rem)] mx-auto">
-                {/* Phone mockup */}
-                <div className="mx-auto w-64 h-[500px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-3 shadow-2xl">
-                  <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-                    {/* Phone screen */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-amber-50">
-                      {/* Status bar */}
-                      <div className="bg-gradient-to-r from-orange-600 to-amber-600 px-6 py-2 flex justify-between items-center">
-                        <span className="text-white text-xs font-medium">9:41</span>
+              {/* Right: phone preview on warm dark panel */}
+              <div className="order-1 lg:order-2 relative flex items-center justify-center bg-gradient-to-br from-orange-900 via-amber-900 to-orange-950 px-8 py-12 lg:py-10">
+                <div className="absolute inset-0 opacity-[0.12] pointer-events-none" style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M20 20c0-3.314 2.686-6 6-6s6 2.686 6 6-2.686 6-6 6-6-2.686-6-6zm-6 0c0-3.314-2.686-6-6-6s-6 2.686-6 6 2.686 6 6 6 6-2.686 6-6z'/%3E%3C/g%3E%3C/svg%3E")`,
+                }} />
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="relative z-10 w-[min(100%,260px)]"
+                >
+                  <div className="rounded-[2.25rem] bg-gradient-to-b from-zinc-800 to-zinc-950 p-[10px] shadow-2xl ring-1 ring-white/10">
+                    <div className="overflow-hidden rounded-[1.85rem] bg-gradient-to-br from-orange-50 to-amber-100 aspect-[9/18] min-h-[420px]">
+                      <div className="flex items-center justify-between bg-gradient-to-r from-orange-600 to-amber-600 px-4 py-2">
+                        <span className="text-[11px] font-medium text-white">9:41</span>
                         <div className="flex gap-1">
-                          <div className="w-4 h-3 bg-white rounded-sm"></div>
-                          <div className="w-4 h-3 bg-white rounded-sm"></div>
-                          <div className="w-4 h-3 bg-white rounded-sm"></div>
+                          <div className="h-2.5 w-3 rounded-sm bg-white/90" />
+                          <div className="h-2.5 w-3 rounded-sm bg-white/90" />
+                          <div className="h-2.5 w-3 rounded-sm bg-white/90" />
                         </div>
                       </div>
-                      
-                      {/* App content */}
-                      <div className="p-4 space-y-4">
+                      <div className="space-y-3 p-4">
                         <div className="text-center">
-                          <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl mx-auto mb-2"></div>
-                          <h4 className="font-bold text-amber-900">Brahma Gurukul</h4>
+                          <div className="mx-auto mb-2 h-11 w-11 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-md" />
+                          <p className="text-sm font-bold text-amber-950">Brahma Gurukul</p>
+                          <p className="text-[11px] text-amber-800/80">Academy</p>
                         </div>
-                        
-                        <div className="space-y-3">
-                          <div className="bg-white rounded-lg p-3 shadow-sm">
-                            <div className="w-full h-2 bg-orange-200 rounded mb-2"></div>
-                            <div className="w-3/4 h-2 bg-orange-200 rounded"></div>
-                          </div>
-                          <div className="bg-white rounded-lg p-3 shadow-sm">
-                            <div className="w-full h-2 bg-amber-200 rounded mb-2"></div>
-                            <div className="w-2/3 h-2 bg-amber-200 rounded"></div>
-                          </div>
-                          <div className="bg-white rounded-lg p-3 shadow-sm">
-                            <div className="w-full h-2 bg-yellow-200 rounded mb-2"></div>
-                            <div className="w-4/5 h-2 bg-yellow-200 rounded"></div>
-                          </div>
+                        <div className="space-y-2">
+                          {[1, 2, 3].map((i) => (
+                            <div key={i} className="rounded-lg bg-white/90 p-3 shadow-sm ring-1 ring-orange-100/80">
+                              <div className="mb-2 h-1.5 w-full rounded bg-orange-200/90" />
+                              <div className="h-1.5 rounded bg-amber-200/80" style={{ width: `${70 + i * 8}%` }} />
+                            </div>
+                          ))}
                         </div>
-                        
-                        <div className="flex justify-center gap-4">
-                          <div className="w-12 h-12 bg-orange-500 rounded-full"></div>
-                          <div className="w-12 h-12 bg-amber-500 rounded-full"></div>
-                          <div className="w-12 h-12 bg-yellow-500 rounded-full"></div>
+                        <div className="flex justify-center gap-3 pt-1">
+                          <div className="h-10 w-10 rounded-full bg-orange-500/90" />
+                          <div className="h-10 w-10 rounded-full bg-amber-500/90" />
+                          <div className="h-10 w-10 rounded-full bg-yellow-500/80" />
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                
-                {/* Floating elements */}
-                <motion.div
-                  animate={{ y: [-10, 10, -10] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-orange-400 to-amber-400 rounded-2xl shadow-lg flex items-center justify-center"
-                >
-                  <Download className="w-8 h-8 text-white" />
-                </motion.div>
-                
-                <motion.div
-                  animate={{ y: [10, -10, 10] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                  className="absolute -bottom-4 -left-4 w-14 h-14 bg-gradient-to-br from-amber-400 to-yellow-400 rounded-2xl shadow-lg flex items-center justify-center"
-                >
-                  <Star className="w-7 h-7 text-white" />
+                  <p className="mt-5 text-center text-xs text-orange-100/85">
+                    Preview — same experience on iOS &amp; Android
+                  </p>
                 </motion.div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
