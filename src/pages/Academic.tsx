@@ -74,18 +74,6 @@ export default function Academic() {
             transition={{ duration: 1 }}
             className="text-center"
           >
-            {/* School Badge */}
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
-              className="flex justify-center mb-6 sm:mb-8"
-            >
-              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-orange-400 to-amber-500 rounded-2xl sm:rounded-3xl flex items-center justify-center text-3xl sm:text-4xl md:text-5xl shadow-2xl border-4 border-white/20">
-                🏫
-              </div>
-            </motion.div>
-
             {/* Main Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -422,162 +410,31 @@ export default function Academic() {
         </div>
       </section>
 
-      {/* Founders Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
-        {/* Decorative Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4af37' fill-opacity='0.3'%3E%3Cpath d='M30 30c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm-10 0c0-5.523-4.477-10-10-10S0 24.477 0 30s4.477 10 10 10 10-4.477 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
-          }}></div>
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto">
-          {/* Section Header */}
+      {/* Founder */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
+        <div className="max-w-md mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-amber-900 mb-10">
+            Meet Our Founder
+          </h2>
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-100 to-amber-100 rounded-full mb-6">
-              <Users className="w-5 h-5 text-orange-600" />
-              <span className="text-amber-900 font-semibold">Leadership</span>
+            <div className="mx-auto w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden border-4 border-orange-200/80 shadow-xl bg-white">
+              <img
+                src="/images/Academic Founder.png"
+                alt="Harisharan Rajput"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-amber-900 mb-6">
-              Meet Our Visionaries
-            </h2>
-            <p className="text-xl text-amber-700 max-w-3xl mx-auto leading-relaxed">
-              The dedicated educators and leaders shaping the future of our students
+            <h3 className="mt-8 text-2xl sm:text-3xl font-serif font-bold text-amber-900">
+              Harisharan Rajput
+            </h3>
+            <p className="mt-3 text-base sm:text-lg text-amber-800">
+              20+ years of experience in teaching
             </p>
-          </motion.div>
-
-          {/* Founder Section - Modern Split Style */}
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="bg-gradient-to-br from-orange-600 via-amber-600 to-yellow-600 rounded-3xl shadow-2xl overflow-hidden"
-            >
-              <div className="grid md:grid-cols-2 gap-0">
-                {/* Left Side - Image */}
-                <div className="relative h-80 md:h-auto min-h-[400px] bg-gradient-to-br from-orange-700 to-amber-800 flex items-center justify-center">
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  {/* Geometric Pattern */}
-                  <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 left-0 w-full h-full" style={{
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.3'%3E%3Cpath d='M30 30c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm-10 0c0-5.523-4.477-10-10-10S0 24.477 0 30s4.477 10 10 10 10-4.477 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
-                    }}></div>
-                  </div>
-                  
-                  <div className="relative z-10">
-                    <motion.div
-                      animate={{ 
-                        scale: [1, 1.05, 1],
-                        rotate: [0, 2, -2, 0]
-                      }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                      className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-4"
-                    >
-                      <img 
-                        src="/images/Academic Founder.png" 
-                        alt="Harisharan Rajput - Founder & Director"
-                        className="w-full h-full object-cover rounded-full border-4 border-white/20 shadow-2xl"
-                      />
-                    </motion.div>
-                    <div className="text-white/90 text-sm sm:text-base font-medium text-center">20+ Years of Excellence</div>
-                  </div>
-                </div>
-
-                {/* Right Side - Content */}
-                <div className="p-8 md:p-12 flex flex-col justify-center">
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2, duration: 0.8 }}
-                  >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                      <Award className="w-4 h-4 text-white" />
-                      <span className="text-white text-sm font-semibold">Founder</span>
-                    </div>
-                    
-                    <h3 className="text-3xl font-bold text-white mb-2">Harisharan Rajput</h3>
-                    <p className="text-orange-100 font-semibold mb-4">Founder & Director</p>
-                    
-                    <div className="space-y-4 mb-6">
-                      <p className="text-white/90 leading-relaxed">
-                        IIT Delhi alumnus revolutionizing education through the perfect blend of ancient Vedic wisdom and modern scientific approach.
-                      </p>
-                      <p className="text-white/80 text-sm">
-                        Passionate about creating leaders who are academically brilliant and culturally rooted.
-                      </p>
-                    </div>
-
-                    {/* Expertise Pills */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      <div className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-medium">
-                        🎓 IIT Delhi
-                      </div>
-                      <div className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-medium">
-                        📚 Ph.D. Education
-                      </div>
-                      <div className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-medium">
-                        🕉️ Vedic Studies
-                      </div>
-                    </div>
-
-                    {/* Quote */}
-                    <div className="border-l-3 border-white/40 pl-4">
-                      <p className="text-white/90 italic text-sm">
-                        "Education is not just about filling minds with facts, but about lighting the fire of curiosity and wisdom."
-                      </p>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Vision Statement */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-20 text-center"
-          >
-            <div className="bg-gradient-to-r from-orange-600 to-amber-600 rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-3.314 2.686-6 6-6s6 2.686 6 6-2.686 6-6 6-6-2.686-6-6zm-6 0c0-3.314-2.686-6-6-6s-6 2.686-6 6 2.686 6 6 6 6-2.686 6-6z'/%3E%3C/g%3E%3C/svg%3E")`,
-              }}></div>
-              <div className="relative z-10">
-                <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-4xl mx-auto mb-6">
-                  🕉️
-                </div>
-                <h3 className="text-3xl font-serif font-bold text-white mb-6">Our Vision</h3>
-                <p className="text-xl text-orange-100 max-w-3xl mx-auto leading-relaxed mb-8">
-                  To create a new generation of leaders who are not only academically brilliant but also rooted in cultural values, 
-                  equipped with ancient wisdom and modern knowledge to face global challenges with confidence and integrity.
-                </p>
-                <div className="flex flex-wrap justify-center gap-6">
-                  <div className="flex items-center gap-2 text-white">
-                    <Star className="w-5 h-5 fill-current" />
-                    <span className="font-semibold">Excellence</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-white">
-                    <BookOpen className="w-5 h-5" />
-                    <span className="font-semibold">Wisdom</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-white">
-                    <Heart className="w-5 h-5" />
-                    <span className="font-semibold">Service</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>

@@ -59,6 +59,15 @@ export default function Coaching() {
     );
   };
 
+  /** Warm-only header gradients — matches page theme; subtle rotation for variety without rainbow clash */
+  const courseHeaderGradients = [
+    "from-orange-700 to-amber-700",
+    "from-amber-700 to-orange-800",
+    "from-orange-800 to-amber-600",
+    "from-amber-800 to-orange-700",
+    "from-orange-700 via-amber-700 to-orange-800",
+  ];
+
   const academicCourses = [
     {
       id: "classes-8-10",
@@ -68,7 +77,6 @@ export default function Coaching() {
       features: ["Mathematics & Science", "English & Social Studies", "Regular Tests & Assignments", "Concept Building"],
       price: "₹8,999",
       duration: "per year",
-      color: "from-blue-500 to-indigo-500"
     },
     {
       id: "classes-11-12",
@@ -78,7 +86,6 @@ export default function Coaching() {
       features: ["Science/Commerce/Arts", "Board Exam Focus", "Practical Training", "Career Guidance"],
       price: "₹15,999",
       duration: "per year",
-      color: "from-purple-500 to-pink-500"
     },
     {
       id: "iit-jee",
@@ -88,7 +95,6 @@ export default function Coaching() {
       features: ["Physics, Chemistry, Maths", "Problem Solving Techniques", "Mock Tests & Analysis", "Previous Year Papers"],
       price: "₹24,999",
       duration: "per year",
-      color: "from-orange-500 to-red-500"
     },
     {
       id: "neet",
@@ -98,7 +104,6 @@ export default function Coaching() {
       features: ["Biology, Physics, Chemistry", "NCERT + Advanced", "Biological Diagrams", "Medical Counseling"],
       price: "₹22,999",
       duration: "per year",
-      color: "from-green-500 to-emerald-500"
     },
     {
       id: "olympiad",
@@ -108,8 +113,7 @@ export default function Coaching() {
       features: ["Mathematics Olympiad", "Science Olympiad", "Logical Reasoning", "International Standards"],
       price: "₹12,999",
       duration: "per year",
-      color: "from-yellow-500 to-orange-500"
-    }
+    },
   ];
 
   const competitiveCourses = [
@@ -121,7 +125,6 @@ export default function Coaching() {
       features: ["Quantitative Aptitude", "Reasoning Ability", "English Language", "General Awareness"],
       price: "₹18,999",
       duration: "6 months",
-      color: "from-indigo-500 to-blue-500"
     },
     {
       id: "state-exams",
@@ -131,7 +134,6 @@ export default function Coaching() {
       features: ["State-specific Syllabus", "Regional Language", "Local Current Affairs", "Previous Papers"],
       price: "₹16,999",
       duration: "6 months",
-      color: "from-teal-500 to-cyan-500"
     },
     {
       id: "pcs",
@@ -141,7 +143,6 @@ export default function Coaching() {
       features: ["General Studies", "Optional Subjects", "Interview Preparation", "Current Affairs"],
       price: "₹28,999",
       duration: "1 year",
-      color: "from-amber-500 to-yellow-500"
     },
     {
       id: "banking",
@@ -151,8 +152,7 @@ export default function Coaching() {
       features: ["Banking Awareness", "Quantitative Aptitude", "Reasoning", "English & Computer"],
       price: "₹14,999",
       duration: "4 months",
-      color: "from-green-500 to-teal-500"
-    }
+    },
   ];
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
@@ -163,7 +163,7 @@ export default function Coaching() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm-10 0c0-5.523-4.477-10-10-10S0 24.477 0 30s4.477 10 10 10 10-4.477 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -171,24 +171,70 @@ export default function Coaching() {
             className="text-center"
           >
             <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-amber-500 rounded-full flex items-center justify-center shadow-2xl">
+              <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-amber-500 rounded-full flex items-center justify-center shadow-2xl ring-4 ring-white/10">
                 <Target className="w-10 h-10 text-white" />
               </div>
             </div>
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-white mb-6">
-              IIT & NEET Coaching
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-8 sm:mb-10">
+              Brahma Gurukul Academy
             </h1>
-            <p className="text-xl md:text-2xl text-orange-100 mb-8 max-w-3xl mx-auto">
-              Classes 11-12 • Ancient Wisdom + Modern Science • Excellence in Competitive Exams
-            </p>
+
+            {/* Course names — visible in hero so visitors see offerings at a glance */}
+            <div className="max-w-4xl mx-auto mb-10 text-left">
+              <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-4 sm:p-6 shadow-xl">
+                <p className="text-xs font-semibold uppercase tracking-wider text-amber-200/90 mb-3 flex items-center gap-2">
+                  <GraduationCap className="w-4 h-4" />
+                  Academic
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {academicCourses.map((course) => (
+                    <Link
+                      key={course.id}
+                      href={`/course/${course.id}`}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/25 px-3 py-1.5 text-sm font-medium text-white transition-colors"
+                    >
+                      {course.title}
+                      <ArrowRight className="w-3.5 h-3.5 opacity-80" />
+                    </Link>
+                  ))}
+                </div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-amber-200/90 mb-3 flex items-center gap-2">
+                  <Briefcase className="w-4 h-4" />
+                  Competitive exams
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {competitiveCourses.map((course) => (
+                    <Link
+                      key={course.id}
+                      href={`/course/${course.id}`}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/25 px-3 py-1.5 text-sm font-medium text-white transition-colors"
+                    >
+                      {course.title}
+                      <ArrowRight className="w-3.5 h-3.5 opacity-80" />
+                    </Link>
+                  ))}
+                </div>
+                <div className="mt-5 pt-4 border-t border-white/15 text-center">
+                  <a
+                    href="#courses"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-amber-100 hover:text-white underline-offset-4 hover:underline"
+                  >
+                    Compare all courses on the page
+                    <ChevronDown className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
+              <motion.a
+                href="#courses"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                Enroll Now
-              </motion.button>
+                View course cards
+              </motion.a>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -370,7 +416,7 @@ export default function Coaching() {
       </section>
 
       {/* Courses Section with Toggle */}
-      <section className="py-20 bg-gradient-to-r from-orange-100 to-amber-100">
+      <section id="courses" className="py-20 bg-gradient-to-r from-orange-100 to-amber-100 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -436,11 +482,19 @@ export default function Coaching() {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-orange-100">
-                  {/* Header */}
-                  <div className={`bg-gradient-to-r ${course.color} p-6`}>
-                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-orange-100/80">
+                  {/* Header — unified warm palette (see courseHeaderGradients) */}
+                  <div
+                    className={`bg-gradient-to-r ${courseHeaderGradients[index % courseHeaderGradients.length]} p-6 relative overflow-hidden`}
+                  >
+                    <div
+                      className="pointer-events-none absolute inset-0 opacity-[0.07]"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M12 12c0-1.657 1.343-3 3-3s3 1.343 3 3-1.343 3-3 3-3-1.343-3-3zm-6 0c0-1.657-1.343-3-3-3S0 10.343 0 12s1.343 3 3 3 3-1.343 3-3z'/%3E%3C/svg%3E")`,
+                      }}
+                    />
+                    <div className="flex items-center gap-4 relative">
+                      <div className="w-14 h-14 bg-white/15 rounded-xl flex items-center justify-center backdrop-blur-sm ring-1 ring-white/20 text-white">
                         {course.icon}
                       </div>
                       <div className="flex-1">

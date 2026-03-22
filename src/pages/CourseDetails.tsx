@@ -3,13 +3,17 @@ import { ArrowLeft, CheckCircle, Clock, Award, BookOpen, Star, MapPin } from "lu
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 
+/** Matches Coaching page — one warm palette, no per-course rainbow headers */
+const COURSE_DETAIL_HERO_BG =
+  "bg-gradient-to-br from-orange-900/90 via-amber-900/80 to-yellow-900/70";
+const HIGHLIGHT_ICON_GRADIENT = "bg-gradient-to-br from-orange-600 to-amber-700";
+
 // Course data (in a real app, this would come from an API or context)
 const courseData = {
   "classes-8-10": {
     title: "Classes 8th, 9th, 10th",
     description: "Strong foundation with NCERT curriculum",
     icon: <BookOpen className="w-8 h-8" />,
-    color: "from-blue-500 to-indigo-500",
     price: "₹8,999",
     duration: "1 year",
     image: "📚",
@@ -40,7 +44,6 @@ const courseData = {
     title: "Classes 11th & 12th",
     description: "Board exam preparation with subject specialization",
     icon: <BookOpen className="w-8 h-8" />,
-    color: "from-purple-500 to-pink-500",
     price: "₹15,999",
     duration: "1 year",
     image: "🎓",
@@ -69,7 +72,6 @@ const courseData = {
     title: "IIT JEE (Mains + Advanced)",
     description: "Complete engineering entrance preparation",
     icon: <Award className="w-8 h-8" />,
-    color: "from-orange-500 to-red-500",
     price: "₹24,999",
     duration: "1 year",
     image: "🏆",
@@ -98,7 +100,6 @@ const courseData = {
     title: "NEET Preparation",
     description: "Medical entrance exam excellence program",
     icon: <Star className="w-8 h-8" />,
-    color: "from-green-500 to-emerald-500",
     price: "₹22,999",
     duration: "1 year",
     image: "⚕️",
@@ -127,7 +128,6 @@ const courseData = {
     title: "Olympiad Training",
     description: "National & International Olympiad preparation",
     icon: <Star className="w-8 h-8" />,
-    color: "from-yellow-500 to-orange-500",
     price: "₹12,999",
     duration: "1 year",
     image: "🌟",
@@ -156,7 +156,6 @@ const courseData = {
     title: "SSC (CGL, CHSL)",
     description: "Staff Selection Commission exam preparation",
     icon: <Award className="w-8 h-8" />,
-    color: "from-indigo-500 to-blue-500",
     price: "₹18,999",
     duration: "6 months",
     image: "📋",
@@ -185,7 +184,6 @@ const courseData = {
     title: "State Level Exams",
     description: "State government job preparation",
     icon: <MapPin className="w-8 h-8" />,
-    color: "from-teal-500 to-cyan-500",
     price: "₹16,999",
     duration: "6 months",
     image: "🏛️",
@@ -214,7 +212,6 @@ const courseData = {
     title: "PCS Preparation",
     description: "Provincial Civil Services exam coaching",
     icon: <Award className="w-8 h-8" />,
-    color: "from-amber-500 to-yellow-500",
     price: "₹28,999",
     duration: "1 year",
     image: "🎖️",
@@ -243,7 +240,6 @@ const courseData = {
     title: "Banking Exams",
     description: "Complete banking sector exam preparation",
     icon: <Award className="w-8 h-8" />,
-    color: "from-green-500 to-teal-500",
     price: "₹14,999",
     duration: "4 months",
     image: "🏦",
@@ -323,7 +319,7 @@ export default function CourseDetails() {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className={`absolute inset-0 bg-gradient-to-br ${course.color} opacity-90`}></div>
+        <div className={`absolute inset-0 ${COURSE_DETAIL_HERO_BG}`}></div>
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm-10 0c0-5.523-4.477-10-10-10S0 24.477 0 30s4.477 10 10 10 10-4.477 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
@@ -423,7 +419,7 @@ export default function CourseDetails() {
                   {course.highlights.map((highlight, index) => (
                     <div key={index} className="bg-white rounded-xl p-4 shadow-lg border border-orange-100">
                       <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 bg-gradient-to-br ${course.color} rounded-lg flex items-center justify-center`}>
+                        <div className={`w-10 h-10 ${HIGHLIGHT_ICON_GRADIENT} rounded-lg flex items-center justify-center shadow-sm`}>
                           <Star className="w-5 h-5 text-white" />
                         </div>
                         <span className="font-medium text-gray-800">{highlight}</span>
