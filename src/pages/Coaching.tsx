@@ -1,10 +1,38 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Award, BookOpen, Brain, Clock, Target, Users, Zap, Star, CheckCircle, TrendingUp, Smartphone, GraduationCap, Trophy, Briefcase, Landmark, User, Quote, ChevronDown, Video, MessageCircle, BarChart3, Bell, FileText } from "lucide-react";
+import { ArrowRight, Award, BookOpen, Brain, Clock, Target, Users, Star, CheckCircle, TrendingUp, Smartphone, GraduationCap, Trophy, Briefcase, Landmark, User, Quote, ChevronDown, Video, MessageCircle, BarChart3, Bell, FileText, AlertCircle, CheckCircle2, MapPin, Phone, Mail } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
+
+// Form Schema
+const coachingInquirySchema = z.object({
+  studentName: z.string().min(2, "Student name is required"),
+  parentName: z.string().min(2, "Parent/Guardian name is required"),
+  phone: z.string().min(10, "Valid 10-digit phone number is required"),
+  email: z.string().email("Valid email is required").optional().or(z.literal("")),
+  address: z.string().min(5, "Address is required"),
+  courseType: z.string().min(1, "Please select a course category"),
+  courseName: z.string().min(1, "Please select a specific course")
+});
+
+type CoachingInquiryValues = z.infer<typeof coachingInquirySchema>;
 
 export default function Coaching() {
   const [activeSection, setActiveSection] = useState(1);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const { toast } = useToast();
+  const [location] = useLocation();
 
   // Counting animation component
   const CountUpNumber = ({ target, suffix = "", duration = 2000 }: { target: string; suffix?: string; duration?: number }) => {
@@ -154,6 +182,72 @@ export default function Coaching() {
       duration: "4 months",
     },
   ];
+
+  const form = useForm<CoachingInquiryValues>({
+    resolver: zodResolver(coachingInquirySchema),
+    defaultValues: {
+      studentName: "",
+      parentName: "",
+      phone: "",
+      email: "",
+      address: "",
+      courseType: "",
+      courseName: ""
+    }
+  });
+
+  const selectedCourseType = form.watch("courseType");
+
+  const onSubmit = async (data: CoachingInquiryValues) => {
+    setIsSubmitting(true);
+    try {
+      const scriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+      if (!scriptUrl) throw new Error("Script URL not configured");
+
+      const formData = new FormData();
+      formData.append("formType", "Courses");
+      Object.entries(data).forEach(([key, value]) => {
+        formData.append(key, value || "");
+      });
+
+      await fetch(scriptUrl, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      });
+
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      toast({
+        title: "Application Received!",
+        description: "Our coaching counselor will contact you shortly.",
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Submission error:", error);
+      setIsSubmitting(false);
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: "Please try again later or contact us directly.",
+      });
+    }
+  };
+
+  const openFormWithCourse = (type?: string, name?: string) => {
+    if (type) form.setValue("courseType", type);
+    if (name) form.setValue("courseName", name);
+    setIsDialogOpen(true);
+    setIsSuccess(false);
+  };
+
+  // Check for search params to auto-open form
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("enroll") === "true") {
+      openFormWithCourse();
+    }
+  }, [location]);
   return (
     <div className="min-h-screen w-full min-w-0 overflow-x-hidden bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       {/* Hero Section */}
@@ -1049,6 +1143,170 @@ export default function Coaching() {
           </motion.div>
         </div>
       </section>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 rounded-3xl border-none">
+          <div className="bg-card p-8 md:p-10">
+            <DialogHeader className="mb-8">
+              <DialogTitle className="text-3xl font-serif font-bold text-amber-900">Coaching Enrollment Form</DialogTitle>
+              <p className="text-amber-700 mt-2">Take the first step towards your academic goal.</p>
+            </DialogHeader>
+
+            {isSuccess ? (
+              <div className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center my-8">
+                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle2 size={32} />
+                </div>
+                <h3 className="text-xl font-bold text-green-800 mb-2">Success!</h3>
+                <p className="text-green-700">Your enrollment inquiry has been submitted. Our team will contact you shortly.</p>
+                <button 
+                  onClick={() => setIsDialogOpen(false)}
+                  className="mt-6 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Student Name */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-amber-900">Student Name *</label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-3.5 w-4 h-4 text-amber-500" />
+                      <input 
+                        {...form.register("studentName")}
+                        className="w-full pl-10 pr-4 py-3 rounded-xl bg-orange-50/50 border border-orange-100 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
+                        placeholder="Enter student's name"
+                      />
+                    </div>
+                    {form.formState.errors.studentName && (
+                      <p className="text-destructive text-xs flex items-center gap-1"><AlertCircle size={12}/> {form.formState.errors.studentName.message}</p>
+                    )}
+                  </div>
+
+                  {/* Parent Name */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-amber-900">Parent/Guardian Name *</label>
+                    <div className="relative">
+                      <Users className="absolute left-3 top-3.5 w-4 h-4 text-amber-500" />
+                      <input 
+                        {...form.register("parentName")}
+                        className="w-full pl-10 pr-4 py-3 rounded-xl bg-orange-50/50 border border-orange-100 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
+                        placeholder="Enter parent's name"
+                      />
+                    </div>
+                    {form.formState.errors.parentName && (
+                      <p className="text-destructive text-xs flex items-center gap-1"><AlertCircle size={12}/> {form.formState.errors.parentName.message}</p>
+                    )}
+                  </div>
+
+                  {/* Phone */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-amber-900">Phone Number *</label>
+                    <div className="relative">
+                      <Phone className="absolute left-3 top-3.5 w-4 h-4 text-amber-500" />
+                      <input 
+                        {...form.register("phone")}
+                        className="w-full pl-10 pr-4 py-3 rounded-xl bg-orange-50/50 border border-orange-100 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
+                        placeholder="10-digit mobile number"
+                      />
+                    </div>
+                    {form.formState.errors.phone && (
+                      <p className="text-destructive text-xs flex items-center gap-1"><AlertCircle size={12}/> {form.formState.errors.phone.message}</p>
+                    )}
+                  </div>
+
+                  {/* Email */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-amber-900">Email Address</label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-3.5 w-4 h-4 text-amber-500" />
+                      <input 
+                        {...form.register("email")}
+                        className="w-full pl-10 pr-4 py-3 rounded-xl bg-orange-50/50 border border-orange-100 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
+                        placeholder="Optional"
+                      />
+                    </div>
+                    {form.formState.errors.email && (
+                      <p className="text-destructive text-xs flex items-center gap-1"><AlertCircle size={12}/> {form.formState.errors.email.message}</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Address */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-amber-900">Address *</label>
+                  <div className="relative">
+                    <MapPin className="absolute left-3 top-3 w-4 h-4 text-amber-500" />
+                    <textarea 
+                      {...form.register("address")}
+                      rows={2}
+                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-orange-50/50 border border-orange-100 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all resize-none"
+                      placeholder="Enter your full address"
+                    />
+                  </div>
+                  {form.formState.errors.address && (
+                    <p className="text-destructive text-xs flex items-center gap-1"><AlertCircle size={12}/> {form.formState.errors.address.message}</p>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Course Type */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-amber-900">Course Category *</label>
+                    <select 
+                      {...form.register("courseType")}
+                      className="w-full px-4 py-3 rounded-xl bg-orange-50/50 border border-orange-100 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all appearance-none"
+                    >
+                      <option value="">Select Category</option>
+                      <option value="Academic">Academic</option>
+                      <option value="Competitive">Competitive</option>
+                    </select>
+                    {form.formState.errors.courseType && (
+                      <p className="text-destructive text-xs flex items-center gap-1"><AlertCircle size={12}/> {form.formState.errors.courseType.message}</p>
+                    )}
+                  </div>
+
+                  {/* Course Name */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-amber-900">Select Course *</label>
+                    <select 
+                      {...form.register("courseName")}
+                      disabled={!selectedCourseType}
+                      className="w-full px-4 py-3 rounded-xl bg-orange-50/50 border border-orange-100 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all appearance-none disabled:opacity-50"
+                    >
+                      <option value="">Select Course</option>
+                      {selectedCourseType === "Academic" && academicCourses.map(c => (
+                        <option key={c.id} value={c.title}>{c.title}</option>
+                      ))}
+                      {selectedCourseType === "Competitive" && competitiveCourses.map(c => (
+                        <option key={c.id} value={c.title}>{c.title}</option>
+                      ))}
+                    </select>
+                    {form.formState.errors.courseName && (
+                      <p className="text-destructive text-xs flex items-center gap-1"><AlertCircle size={12}/> {form.formState.errors.courseName.message}</p>
+                    )}
+                  </div>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-70 flex justify-center items-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  ) : (
+                    <>Submit Enrollment <ArrowRight className="w-5 h-5" /></>
+                  )}
+                </motion.button>
+              </form>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

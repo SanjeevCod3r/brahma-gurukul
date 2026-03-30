@@ -28,13 +28,37 @@ export default function Contact() {
 
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. We'll get back to you soon.",
-    });
-    form.reset();
+    try {
+      const scriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+      if (!scriptUrl) throw new Error("Script URL not configured");
+
+      const formData = new FormData();
+      formData.append("formType", "Contact");
+      Object.entries(data).forEach(([key, value]) => {
+        formData.append(key, value || "");
+      });
+
+      await fetch(scriptUrl, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      });
+
+      setIsSubmitting(false);
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. We'll get back to you soon.",
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Submission error:", error);
+      setIsSubmitting(false);
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: "Please try again later or contact us directly.",
+      });
+    }
   };
 
   return (

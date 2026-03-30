@@ -37,15 +37,38 @@ export default function Admissions() {
 
   const onSubmit = async (data: AdmissionFormValues) => {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    toast({
-      title: "Application Received!",
-      description: "We will contact you shortly regarding the next steps.",
-    });
-    form.reset();
+    try {
+      const scriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+      if (!scriptUrl) throw new Error("Script URL not configured");
+
+      const formData = new FormData();
+      formData.append("formType", "Admission Inquiry");
+      Object.entries(data).forEach(([key, value]) => {
+        formData.append(key, value || "");
+      });
+
+      await fetch(scriptUrl, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      });
+
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      toast({
+        title: "Application Received!",
+        description: "We will contact you shortly regarding the next steps.",
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Submission error:", error);
+      setIsSubmitting(false);
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: "Please try again later or contact us directly.",
+      });
+    }
   };
 
   return (
