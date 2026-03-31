@@ -7,7 +7,7 @@ const navLinks = [
   { name: "Home", path: "/", icon: "🏠" },
   { name: "About", path: "/about", icon: "📿" },
   { name: "Academic", path: "/academic", icon: "�" },
-  { name: "Coaching", path: "/coaching", icon: "🎯" },
+  { name: "Coaching", path: "/coaching?enroll=true", icon: "🎯" },
   { name: "Admissions", path: "/admissions", icon: "🎓" },
   { name: "Gallery", path: "/gallery", icon: "🖼️" },
   { name: "Contact", path: "/contact", icon: "📞" },
@@ -118,7 +118,7 @@ export default function VedicDrawer({ isOpen, onClose }: VedicDrawerProps) {
               {/* Scrollable Content */}
               <div className="flex-1 overflow-y-auto relative p-6 space-y-2">
                 {navLinks.map((link, index) => {
-                  const isActive = location === link.path;
+                  const isActive = location === link.path.split("?")[0];
                   return (
                     <motion.div
                       key={link.path}

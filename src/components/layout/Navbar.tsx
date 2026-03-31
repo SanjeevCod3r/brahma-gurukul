@@ -94,7 +94,7 @@ export function Navbar() {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-1 lg:gap-2">
               {navLinks.map((link) => {
-                const isActive = location === link.path;
+                const isActive = location === link.path.split('?')[0];
                 const isHomeAndTop = location === '/' && !isScrolled;
                 return (
                   <Link
