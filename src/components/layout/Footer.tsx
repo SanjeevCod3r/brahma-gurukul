@@ -61,14 +61,17 @@ export function Footer() {
               <li className="flex items-start gap-3 text-white/70">
                 <MapPin className="text-primary shrink-0 mt-1" size={18} />
                 <span className="text-sm leading-relaxed">
-                  Brahma Gurukul Campus,<br />
-                  Vedic Heritage Road,<br />
-                  India 110001
+                  Pathakpura Panwari,<br />
+                  Mahoba, Uttar Pradesh<br />
+                  India
                 </span>
               </li>
               <li className="flex items-center gap-3 text-white/70">
                 <Phone className="text-primary shrink-0" size={18} />
-                <span className="text-sm">+91 98765 43210</span>
+                <span className="text-sm">
+                  +91 81758 19525<br />
+                  +91 93365 76242
+                </span>
               </li>
               <li className="flex items-center gap-3 text-white/70">
                 <Mail className="text-primary shrink-0" size={18} />

@@ -150,75 +150,43 @@ const fadeUp = {
 export default function Home() {
   return (
     <div className="w-full">
-      {/* HERO SECTION */}
-      <section className="relative h-screen min-h-[640px] w-full flex items-center justify-center overflow-hidden">
+      {/* HERO SECTION - NEW DUAL EDUCATION DESIGN */}
+      <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
 
-        {/* ── Layer 1: Deep multi-stop gradient ── */}
-        <div className="absolute inset-0 z-0"
-          style={{background: "radial-gradient(ellipse 120% 80% at 50% 0%, #7c1a00 0%, #a83200 18%, #c94800 35%, #e06010 52%, #8b3a00 70%, #1a0800 100%)"}}
+        {/* Background gradient layers */}
+        <div className="absolute inset-0 z-0">
+          {/* Primary gradient */}
+          <div className="absolute inset-0" 
+            style={{background: "radial-gradient(ellipse 140% 90% at 50% 0%, #8B2500 0%, #A83200 15%, #C94800 35%, #E06010 55%, #8B3A00 75%, #1A0800 100%)"}}
+          />
+          {/* Golden overlay */}
+          <div className="absolute inset-0" 
+            style={{background: "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(212,175,55,0.15) 0%, transparent 70%)"}}
+          />
+          {/* Subtle mandala pattern */}
+          <div className="absolute inset-0 opacity-8">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `repeating-radial-gradient(circle at 50% 50%, transparent 0px, transparent 40px, rgba(212,175,55,0.1) 40px, rgba(212,175,55,0.1) 41px)`,
+              backgroundSize: '200px 200px'
+            }}/>
+          </div>
+        </div>
+
+        {/* Animated floating elements */}
+        <motion.div 
+          className="absolute top-20 left-10 w-32 h-32 rounded-full opacity-20"
+          style={{background: "radial-gradient(circle, rgba(255,215,0,0.4), transparent)"}}
+          animate={{scale:[1,1.3,1], x:[0,20,0], y:[0,-15,0]}}
+          transition={{repeat:Infinity, duration:8, ease:"easeInOut"}}
+        />
+        <motion.div 
+          className="absolute bottom-20 right-10 w-40 h-40 rounded-full opacity-15"
+          style={{background: "radial-gradient(circle, rgba(255,140,0,0.3), transparent)"}}
+          animate={{scale:[1.2,1,1.2], x:[0,-25,0], y:[0,20,0]}}
+          transition={{repeat:Infinity, duration:10, ease:"easeInOut"}}
         />
 
-        {/* ── Layer 2: Golden shimmer vignette ── */}
-        <div className="absolute inset-0 z-0"
-          style={{background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(212,175,55,0.18) 0%, transparent 70%)"}}
-        />
-
-        {/* ── Layer 3: SVG Mandala / Vedic pattern ── */}
-        <svg className="absolute inset-0 w-full h-full z-0 opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-              <circle cx="40" cy="40" r="1.5" fill="#D4AF37"/>
-              <circle cx="0" cy="0" r="1" fill="#D4AF37"/>
-              <circle cx="80" cy="0" r="1" fill="#D4AF37"/>
-              <circle cx="0" cy="80" r="1" fill="#D4AF37"/>
-              <circle cx="80" cy="80" r="1" fill="#D4AF37"/>
-              <line x1="40" y1="0" x2="40" y2="80" stroke="#D4AF37" strokeWidth="0.3"/>
-              <line x1="0" y1="40" x2="80" y2="40" stroke="#D4AF37" strokeWidth="0.3"/>
-            </pattern>
-          </defs>
-          <rect width="800" height="800" fill="url(#grid)"/>
-          {/* Central large mandala */}
-          {[320,280,240,200,160,120,80,50,30].map((r, i) => (
-            <circle key={i} cx="400" cy="400" r={r} fill="none" stroke="#D4AF37" strokeWidth={i % 2 === 0 ? "0.8" : "0.4"} opacity={0.6 - i*0.05}/>
-          ))}
-          {/* 8-pointed star petals */}
-          {Array.from({length: 24}).map((_, i) => {
-            const angle = (i * 15 * Math.PI) / 180;
-            const x1 = 400 + Math.cos(angle) * 60;
-            const y1 = 400 + Math.sin(angle) * 60;
-            const x2 = 400 + Math.cos(angle) * 310;
-            const y2 = 400 + Math.sin(angle) * 310;
-            return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#D4AF37" strokeWidth="0.4" opacity="0.5"/>
-          })}
-          {/* Corner mandalas */}
-          {[[0,0],[800,0],[0,800],[800,800]].map(([cx,cy], i) => (
-            <g key={i}>
-              {[80,60,40,20].map((r,j) => <circle key={j} cx={cx} cy={cy} r={r} fill="none" stroke="#D4AF37" strokeWidth="0.5" opacity="0.4"/>)}
-            </g>
-          ))}
-          {/* Decorative lotus petals */}
-          {Array.from({length: 16}).map((_, i) => {
-            const angle = (i * 22.5 * Math.PI) / 180;
-            const px = 400 + Math.cos(angle) * 130;
-            const py = 400 + Math.sin(angle) * 130;
-            return <ellipse key={i} cx={px} cy={py} rx="18" ry="8" fill="none" stroke="#D4AF37" strokeWidth="0.6" opacity="0.55"
-              transform={`rotate(${i*22.5 + 90}, ${px}, ${py})`}/>
-          })}
-        </svg>
-
-        {/* ── Layer 4: Animated glowing orbs ── */}
-        <motion.div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full z-0 pointer-events-none"
-          style={{background: "radial-gradient(circle, rgba(255,120,0,0.25) 0%, transparent 70%)"}}
-          animate={{scale:[1,1.2,1], opacity:[0.5,0.8,0.5]}}
-          transition={{repeat:Infinity, duration:5, ease:"easeInOut"}}
-        />
-        <motion.div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full z-0 pointer-events-none"
-          style={{background: "radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%)"}}
-          animate={{scale:[1.2,1,1.2], opacity:[0.4,0.7,0.4]}}
-          transition={{repeat:Infinity, duration:6, ease:"easeInOut"}}
-        />
-
-        {/* ── Layer 5: Top & bottom decorative borders ── */}
+        {/* Decorative borders */}
         <div className="absolute top-0 left-0 right-0 h-1 z-10"
           style={{background:"linear-gradient(90deg, transparent, #D4AF37, #FF6600, #D4AF37, transparent)"}}
         />
@@ -226,93 +194,184 @@ export default function Home() {
           style={{background:"linear-gradient(90deg, transparent, #D4AF37, #FF6600, #D4AF37, transparent)"}}
         />
 
-        {/* ── Hero Content ── */}
-        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center justify-center w-full h-full" style={{paddingTop:"72px"}}>
+        {/* Main Hero Content */}
+        <div className="relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full" style={{paddingTop:"80px"}}>
 
-          {/* Om badge + Sanskrit tagline in one row */}
+          {/* Top branding */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-            className="flex flex-col items-center mb-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-4 sm:mb-6 mt-8"
           >
-            <div className="relative mb-2">
-              <div className="absolute inset-0 rounded-full blur-lg opacity-70"
-                style={{background:"radial-gradient(circle, rgba(255,140,0,0.9), transparent)"}}
-              />
-              <div className="relative w-16 h-16 rounded-full flex items-center justify-center border border-yellow-400/50"
-                style={{background:"rgba(0,0,0,0.4)", backdropFilter:"blur(12px)"}}
-              >
-                <span className="text-4xl font-serif leading-none" style={{color:"#FFD700", textShadow:"0 0 16px rgba(255,165,0,1)"}}>ॐ</span>
-              </div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-yellow-400/30"
+              style={{background:"rgba(0,0,0,0.3)", backdropFilter:"blur(10px)"}}
+            >
+              <span className="text-2xl sm:text-3xl" style={{color:"#FFD700"}}>ॐ</span>
+              <span className="text-xs sm:text-sm tracking-widest uppercase font-medium"
+                style={{color:"#FFD700", textShadow:"0 0 8px rgba(255,165,0,0.5)"}}>
+                Shree Kamta Prashad Memorial Shikshan Sansthan
+              </span>
             </div>
-            <p className="text-[10px] md:text-xs tracking-[0.25em] uppercase font-medium"
-              style={{color:"#FFD700", textShadow:"0 0 10px rgba(255,165,0,0.6)"}}>
-              ॐ सा विद्या या विमुक्तये &nbsp;✦&nbsp; Shree Kamta Prashad Memorial Shikshan Sansthan
-            </p>
           </motion.div>
 
-          {/* Main heading */}
+          {/* Dual Education Visual - Mobile First */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-8 sm:mb-12"
+          >
+            {/* Mobile stacked layout */}
+            <div className="block sm:hidden">
+              <div className="space-y-4">
+                {/* Vedic Pillar - Mobile */}
+                <div className="relative rounded-2xl overflow-hidden border border-yellow-400/30"
+                  style={{background:"linear-gradient(135deg, rgba(139,69,19,0.8), rgba(160,82,45,0.6))", backdropFilter:"blur(10px)"}}>
+                  <div className="p-6 text-center">
+                    <div className="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center"
+                      style={{background:"rgba(255,215,0,0.2)", border:"1px solid rgba(255,215,0,0.4)"}}>
+                      <Sun size={24} style={{color:"#FFD700"}}/>
+                    </div>
+                    <h3 className="text-lg font-bold text-yellow-300 mb-2">वैदिक शिक्षा</h3>
+                    <p className="text-xs text-yellow-100/80 mb-3">Ancient Wisdom & Values</p>
+                    <div className="text-xs space-y-1 text-yellow-50/70">
+                      <p>• Yoga & Meditation (5:00 AM)</p>
+                      <p>• Sanskrit Shlokas</p>
+                      <p>• Gurukul Traditions</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Modern Pillar - Mobile */}
+                <div className="relative rounded-2xl overflow-hidden border border-blue-400/30"
+                  style={{background:"linear-gradient(135deg, rgba(25,25,112,0.8), rgba(70,130,180,0.6))", backdropFilter:"blur(10px)"}}>
+                  <div className="p-6 text-center">
+                    <div className="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center"
+                      style={{background:"rgba(59,91,219,0.2)", border:"1px solid rgba(59,91,219,0.4)"}}>
+                      <GraduationCap size={24} style={{color:"#3B5BDB"}}/>
+                    </div>
+                    <h3 className="text-lg font-bold text-blue-300 mb-2">आधुनिक शिक्षा</h3>
+                    <p className="text-xs text-blue-100/80 mb-3">Modern Academic Excellence</p>
+                    <div className="text-xs space-y-1 text-blue-50/70">
+                      <p>• CBSE Curriculum</p>
+                      <p>• Smart Classrooms</p>
+                      <p>• Science & Computer Labs</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop side-by-side layout */}
+            <div className="hidden sm:block">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+                {/* Vedic Pillar */}
+                <div className="relative rounded-3xl overflow-hidden border border-yellow-400/30"
+                  style={{background:"linear-gradient(135deg, rgba(139,69,19,0.8), rgba(160,82,45,0.6))", backdropFilter:"blur(10px)"}}>
+                  <div className="p-8 text-center">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                      style={{background:"rgba(255,215,0,0.2)", border:"2px solid rgba(255,215,0,0.4)"}}>
+                      <Sun size={32} style={{color:"#FFD700"}}/>
+                    </div>
+                    <h3 className="text-2xl font-bold text-yellow-300 mb-3">वैदिक शिक्षा</h3>
+                    <p className="text-sm text-yellow-100/80 mb-4">Ancient Wisdom & Cultural Values</p>
+                    <div className="text-sm space-y-2 text-yellow-50/70">
+                      <p>• Daily Yoga & Meditation (5:00 AM)</p>
+                      <p>• Sanskrit Shlokas & Vedic Chants</p>
+                      <p>• Traditional Gurukul Practices</p>
+                      <p>• Character & Discipline Building</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Modern Pillar */}
+                <div className="relative rounded-3xl overflow-hidden border border-blue-400/30"
+                  style={{background:"linear-gradient(135deg, rgba(25,25,112,0.8), rgba(70,130,180,0.6))", backdropFilter:"blur(10px)"}}>
+                  <div className="p-8 text-center">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                      style={{background:"rgba(59,91,219,0.2)", border:"2px solid rgba(59,91,219,0.4)"}}>
+                      <GraduationCap size={32} style={{color:"#3B5BDB"}}/>
+                    </div>
+                    <h3 className="text-2xl font-bold text-blue-300 mb-3">आधुनिक शिक्षा</h3>
+                    <p className="text-sm text-blue-100/80 mb-4">Modern Academic Excellence</p>
+                    <div className="text-sm space-y-2 text-blue-50/70">
+                      <p>• Complete CBSE Curriculum</p>
+                      <p>• Smart Classrooms & Digital Learning</p>
+                      <p>• Science, Math & Computer Labs</p>
+                      <p>• Competitive Exam Preparation</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Central Unified Message */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-center mb-8 sm:mb-10"
+          >
+            <div className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full"
+              style={{background:"rgba(255,255,255,0.1)", backdropFilter:"blur(15px)", border:"1px solid rgba(255,215,0,0.3)"}}>
+              <span style={{color:"#FFD700"}}>✦</span>
+              <span className="text-sm sm:text-base font-medium text-white">Both in ONE SCHOOL - Every Student, Every Day</span>
+              <span style={{color:"#FFD700"}}>✦</span>
+            </div>
+          </motion.div>
+
+          {/* Main Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-3 leading-tight"
-            style={{color:"#FFFBF0", textShadow:"0 2px 24px rgba(0,0,0,0.6)"}}
+            transition={{ duration: 0.9, delay: 0.6 }}
+            className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold mb-4 sm:mb-6 leading-tight"
+            style={{color:"#FFFBF0", textShadow:"0 2px 20px rgba(0,0,0,0.7)"}}
           >
-            जहां परंपरा और{" "}
+            Where Tradition Meets{" "}
             <span style={{
               background: "linear-gradient(135deg, #FFD700 0%, #FF8C00 45%, #FFD700 90%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              filter: "drop-shadow(0 0 10px rgba(255,165,0,0.6))"
-            }}>आधुनिक शिक्षा</span>{" "}मिलती है
+              filter: "drop-shadow(0 0 12px rgba(255,165,0,0.7))"
+            }}>Modern Excellence</span>
           </motion.h1>
-
-          {/* Divider */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="flex items-center justify-center gap-3 mb-3"
-          >
-            <div className="h-px w-20" style={{background:"linear-gradient(90deg, transparent, #D4AF37)"}}/>
-            <span style={{color:"#D4AF37"}}>✦</span>
-            <div className="h-px w-20" style={{background:"linear-gradient(90deg, #D4AF37, transparent)"}}/>
-          </motion.div>
 
           {/* Subheading */}
           <motion.p
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.35 }}
-            className="text-base md:text-lg text-white/85 mb-7 max-w-2xl mx-auto leading-relaxed"
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="text-center text-sm sm:text-base md:text-lg text-white/90 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            CBSE Education with Gurukul Values — nurturing minds, souls & futures from Nursery to Class 10th.
+            Experience the perfect blend of ancient Gurukul wisdom and contemporary CBSE education. 
+            From Nursery to Class 10th, we shape future leaders with strong roots and modern wings.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.55 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-7"
+            transition={{ duration: 0.8, delay: 0.85 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 sm:mb-12"
           >
             <Link
               href="/admissions"
-              className="w-full sm:w-auto px-8 py-3 rounded-full font-bold text-base transition-all hover:-translate-y-1"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-sm sm:text-base transition-all hover:-translate-y-1 text-center"
               style={{
                 background: "linear-gradient(135deg, #FF6600, #FF3300)",
                 color: "#fff",
                 boxShadow: "0 8px 28px rgba(255,80,0,0.45), inset 0 1px 0 rgba(255,255,255,0.2)"
               }}
             >
-              Apply for Admission
+              🎓 Apply for Admission
             </Link>
             <Link
               href="/about"
-              className="w-full sm:w-auto px-8 py-3 rounded-full font-bold text-base transition-all hover:-translate-y-1"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-sm sm:text-base transition-all hover:-translate-y-1 text-center"
               style={{
                 background: "rgba(255,255,255,0.08)",
                 backdropFilter: "blur(12px)",
@@ -321,46 +380,13 @@ export default function Home() {
                 boxShadow: "0 4px 18px rgba(212,175,55,0.15)"
               }}
             >
-              Explore More
+              🏛️ Explore Our Campus
             </Link>
           </motion.div>
 
-          {/* Stats row */}
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.75 }}
-            className="flex items-center justify-center gap-6 md:gap-12 flex-wrap"
-          >
-            {[
-              { number: "500+", label: "Students" },
-              { number: "15+", label: "Years of Excellence" },
-              { number: "100%", label: "Holistic Education" },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <p className="text-xl md:text-2xl font-serif font-bold" style={{color:"#FFD700"}}>{stat.number}</p>
-                <p className="text-[10px] text-white/55 tracking-widest uppercase mt-0.5">{stat.label}</p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
+                  </div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-        >
-          <div className="w-6 h-10 rounded-full flex justify-center p-1.5"
-            style={{border:"1.5px solid rgba(212,175,55,0.5)"}}
-          >
-            <motion.div className="w-1.5 rounded-full" style={{background:"#FFD700"}}
-              animate={{height:["30%","70%","30%"], opacity:[0.6,1,0.6]}}
-              transition={{repeat:Infinity, duration:2}}
-            />
-          </div>
-        </motion.div>
-      </section>
+              </section>
 
       {/* ANIMATED STATS BAND */}
       <section className="py-14 md:py-16 relative overflow-hidden" style={{background:"linear-gradient(135deg,#1a0800 0%,#2d1200 50%,#1a0800 100%)"}}>
